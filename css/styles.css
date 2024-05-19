@@ -1,0 +1,147 @@
+:root {
+    --green: hsl(157 74% 62%);
+    --grey: hsl(225 26% 23%);
+    --dark: hsl(224 35% 11%);
+    --white: hsl(0 0% 100%);
+    --light-grey: hsl(225 21% 45%);
+    --lightest: hsl(225 40% 83%);
+
+    --font-body: "Chivo", sans-serif;
+
+    --text-title: 1.625rem;
+    --text-body: 0.9375rem;
+    --text-btn: 0.875rem;
+
+    --line-title: 1.46;
+    --line-body: 1.66;
+    --line-btn: 2;
+
+    @media(width >= 40em) {
+        --text-title: 3rem;
+        --text-body: 1.125rem;
+
+        --line-title: 1.16;
+        --line-body: 1.5;
+    }
+
+    @media(width >= 64em) {
+        --text-title: 3.25rem;
+
+        --line-title: 1.19;
+    }
+
+}
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: var(--dark);
+    font-family: var(--font-body);
+    font-weight: 300;
+
+    img {
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: var(--text-title);
+        line-height: var(--line-title);
+        color: var(--green);
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 300;
+
+        span {
+            color: var(--white);
+        }
+    }
+
+    p {
+        font-size: var(--text-body);
+        line-height: var(--line-body);
+        color: var(--light-grey);
+        text-align: center;
+    }
+
+    @media (width >= 40em) {
+        h1,
+        p {
+            text-align: left;
+        }
+    }
+}
+
+.container {
+    overflow: hidden;
+    position: relative;
+    
+    /* Pseudo to allow for opacity */
+    &::before {
+        content: '';
+        background: center / cover no-repeat url(../assets/mobile/image-host.jpg);
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        inset: 0;
+        opacity: 0.1;
+        z-index: -1;
+    }
+}
+
+header {
+    margin-block: 62px 57px;
+    display: grid;
+    place-items: center;
+}
+
+article {
+    margin: 0 24px 78px;
+    display: grid;
+    gap: 16px;
+
+    form {
+        order: 10;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-block: 16px;
+
+        input {
+            font-size: var(--text-btn);
+            font-weight: 700;
+            font-family: var(--font-body);
+            line-height: var(--line-btn);
+            padding: 9px 32px;
+            border-radius: 28px;
+            border: none;
+
+            &[type="email"] {
+                background: var(--light-grey);
+                color: var(--white);
+                
+
+                &::placeholder {
+                    color: hsla(0, 0%, 100%, 0.5);
+                }
+            }
+
+            &[type="submit"] {
+                background: var(--green);
+                color: var(--dark);
+            }
+        }
+    }
+
+    ul {
+        display: flex;
+        gap: 16px;
+        list-style-type: none;
+        margin-block: 16px;
+    }
+}
