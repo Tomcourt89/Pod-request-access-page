@@ -45,6 +45,8 @@ body {
     font-family: var(--font-body);
     font-weight: 300;
     position: relative;
+    max-width: 1440px;
+    margin: 0 auto;
 
     img {
         max-width: 100%;
