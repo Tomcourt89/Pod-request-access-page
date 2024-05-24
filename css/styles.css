@@ -44,6 +44,7 @@ body {
     background: var(--dark);
     font-family: var(--font-body);
     font-weight: 300;
+    position: relative;
 
     img {
         max-width: 100%;
@@ -55,7 +56,7 @@ body {
         color: var(--green);
         text-transform: uppercase;
         text-align: center;
-        font-weight: 300;
+        font-weight: 100;
 
         span {
             color: var(--white);
@@ -67,12 +68,36 @@ body {
         line-height: var(--line-body);
         color: var(--light-grey);
         text-align: center;
+        font-weight: 100;
     }
 
     @media (width >= 40em) {
         h1,
         p {
             text-align: left;
+        }
+
+        &::after {
+            content: '';
+            background: url(../assets/desktop/bg-pattern-dots.svg);
+            position: absolute;
+            height: 104px;
+            width: 232px;
+            bottom: 0;
+            left: 30px;
+        }
+    }
+
+    @media (width >= 64em) {
+        &::after {
+            content: '';
+            background: url(../assets/desktop/bg-pattern-dots.svg);
+            position: absolute;
+            height: 104px;
+            width: 232px;
+            bottom: 78px;
+            left: unset;
+            right: 0;
         }
     }
 }
@@ -92,12 +117,41 @@ body {
         opacity: 0.1;
         z-index: -1;
     }
+
+    @media (width >= 40em) {
+        margin-bottom: 257px;
+
+        &::before {
+            background: top right / contain no-repeat url(../assets/tablet/image-host.jpg);
+            opacity: 0.7;
+        }
+    }
+
+    @media (width >= 64em) {
+        margin-block: 102px 130px;
+        padding: 0 165px;
+
+        &::before {
+            background: top right / contain no-repeat url(../assets/desktop/image-host.jpg);
+            top: 28px;
+        }
+    }
 }
 
 header {
     margin-block: 62px 57px;
     display: grid;
     place-items: center;
+
+    @media (width >= 40em) {
+        display: block;
+        margin: 50px 39px 152px;
+    }
+
+    @media (width >= 64em) {
+        display: block;
+        margin: 0 0 103px 0;
+    }
 }
 
 article {
@@ -122,26 +176,114 @@ article {
             border: none;
 
             &[type="email"] {
-                background: var(--light-grey);
+                background: var(--grey);
                 color: var(--white);
                 
 
                 &::placeholder {
                     color: hsla(0, 0%, 100%, 0.5);
                 }
+
+                &::focus {
+                    background-color: inherit;
+                }
             }
 
             &[type="submit"] {
                 background: var(--green);
                 color: var(--dark);
+                cursor: pointer;
+                transition: background 0.5s ease;
+
+                &:hover,
+                &:focus {
+                    background: #B3FFE2;
+                }
             }
+        }
+        
+        .input-error {
+            margin-left: 32px;
+            font-size: 0.75rem;
+            color: #FB3E3E;
+            font-weight: 500;
+            visibility: hidden;
+        }
+
+        input[type="email"]:not(:focus):invalid ~ .input-error {
+            visibility: visible;
         }
     }
 
     ul {
         display: flex;
+        align-items: center;
         gap: 16px;
         list-style-type: none;
         margin-block: 16px;
+    }
+
+    @media (width >= 40em) {
+        background: var(--dark);
+        margin: 0 94px 0 39px;
+        padding-top: 93px;
+        gap: 31px;
+
+        form,
+        p {
+            max-width: 445px;
+        }
+
+        form {
+            --btn-width: 162px;
+
+            order: unset;
+            display: grid;
+            grid-template-columns: 1fr var(--btn-width);
+            padding-right: 18px;
+
+            input[type="email"] {
+                grid-row: 1;
+                grid-column: 1/ span 2;
+                padding-right: var(--btn-width);
+                padding-block: 14px;
+            }
+
+            input[type="submit"] {
+                grid-row: 1;
+                grid-column: 2;
+                margin: 5px;
+                padding: 0;
+            }
+        }
+
+        p {
+            color: var(--lightest);
+        }
+
+        ul {
+            gap: 40px;
+            margin: 0;
+        }
+    }
+
+    @media (width >= 64em) {
+        max-width: 723px;
+        margin: 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+@media (40em < width < 64em) {
+    .attribution {
+        text-align: right !important;
+        margin-right: 39px;
     }
 }
